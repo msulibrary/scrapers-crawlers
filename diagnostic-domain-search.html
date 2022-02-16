@@ -30,7 +30,7 @@
           <p>Enter your query in the box below. Google (or Yahoo or Bing, whichever you choose) will search this site only, and a new tab will open up with the results for your search term.</p>
           <br>							
           <input id="hiddenQuery" type="hidden" name="q">
-          <input name="intialQuery" type="text" style="width: 85%;height:45px;" value="">
+          <input name="actualQuery" type="text" style="width: 85%;height:45px;" value="">
           <p><input type="submit" value="Search"></p>
           <div><input id="google" name="se" type="radio" checked><label for="google">Google</label><br/><input id="yahoo" name="se" type="radio"><label for="yahoo">Yahoo</label><br/><input id="bing" name="se" type="radio"><label for="bing">Bing</label></div>
         </form>
@@ -55,13 +55,13 @@
         document.getElementById("hiddenQuery").name=queryFieldName[index]
       }
       
-      function siteSearch({initialQuery}) {
+      function siteSearch({actualQuery}) {
         //loop through radio to see which search engine is checked
         for (i=0; i< document.domainSearch.se.length; i++) { 
           if (document.domainSearch.se[i].checked==true)
             switchAction(document.domainSearch.se[i], i)
         }
-        document.getElementById("hiddenQuery").value=`site:${domainRoot} ${initialQuery.value}`
+        document.getElementById("hiddenQuery").value=`site:${domainRoot} ${actualQuery.value}`
       }
     </script>
   </body>
