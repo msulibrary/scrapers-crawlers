@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagnostic Domain Search - My Site</title>
+    <link rel="stylesheet" href="/">
+    <meta name="description" content="Page description">
+    <meta property="og:title" content="Unique page title - My Site">
+    <meta property="og:description" content="Page description">
+    <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+    <meta property="og:image:alt" content="Image description">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://www.mywebsite.com/page">
+    <link rel="canonical" href="https://www.mywebsite.com/page">
+    <link rel="icon" href="/">
+    <link rel="icon" href="/" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/">
+    <link rel="manifest" href="/my.webmanifest">
+  </head>
+  <body>
+    <main>
+      <header class="section">
+        <h1>Search Results by Domain</h1>
+      </header>
+      <section>
+        <form role="search" name="domainSearch" action="https://www.google.com/search" target="_blank" method="get" onSubmit="siteSearch(this)">
+          <p>Enter your query in the box below. Google (or Yahoo or Bing, whichever you choose) will search this site only, and a new tab will open up with the results for your search term.</p>
+          <br>							
+          <input id="hiddenquery" type="hidden" name="q">
+          <input name="qfront" type="text" style="width: 85%;height:45px;" value="">
+          <p><input type="submit" value="Search"></p>
+          <div><input id="google" name="se" type="radio" checked><label for="google">Google</label><br/><input id="yahoo" name="se" type="radio"><label for="yahoo">Yahoo</label><br/><input id="bing" name="se" type="radio"><label for="bing">Bing</label></div>
+        </form>
+      </section>
+    </main>
+    <script>
+      var domainroot="https://www.lib.montana.edu/"
+      
+      var searchaction=[ //form action for the 3 search engines
+      "https://www.google.com/search",
+      "https://search.yahoo.com/search",
+      "https://search.msn.com/results.aspx"
+      ]
+      
+      var queryfieldname=["q","p","q"] //name of hidden query form for the 3 search engines
+      
+      function switchaction(cur, index){
+      cur.form.action=searchaction[index]
+      document.getElementById("hiddenquery").name=queryfieldname[index]
+      }
+      
+      function siteSearch(curobj){
+      for (i=0; i< document.domainSearch.se.length; i++){ //loop through radio to see which is checked
+      if (document.domainSearch.se[i].checked==true)
+      switchaction(document.domainSearch.se[i], i)
+      }
+      document.getElementById("hiddenquery").value="site:"+domainroot+" "+curobj.qfront.value
+      }
+      
+    </script>
+  </body>
+</html>:
