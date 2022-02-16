@@ -26,43 +26,43 @@
         <h1>Search Results by Domain</h1>
       </header>
       <section>
-        <form role="search" name="domainSearch" action="https://www.google.com/search" target="_blank" method="get" onSubmit="siteSearch(this)">
+        <form role="search" name="domainSearch" action="https://www.google.com/search" target="_blank" rel="noopener noreferrer" method="get" onSubmit="siteSearch(this)">
           <p>Enter your query in the box below. Google (or Yahoo or Bing, whichever you choose) will search this site only, and a new tab will open up with the results for your search term.</p>
           <br>							
-          <input id="hiddenquery" type="hidden" name="q">
-          <input name="qfront" type="text" style="width: 85%;height:45px;" value="">
+          <input id="hiddenQuery" type="hidden" name="q">
+          <input name="query" type="text" style="width: 85%;height:45px;" value="">
           <p><input type="submit" value="Search"></p>
           <div><input id="google" name="se" type="radio" checked><label for="google">Google</label><br/><input id="yahoo" name="se" type="radio"><label for="yahoo">Yahoo</label><br/><input id="bing" name="se" type="radio"><label for="bing">Bing</label></div>
         </form>
       </section>
     </main>
-<script>
-//set domain to search
-const domainroot="https://www.lib.montana.edu/";
-
-//form action for the 3 search engines
-const searchaction = [ 
-  "https://www.google.com/search",
-  "https://search.yahoo.com/search",
-  "https://search.msn.com/results.aspx"
-];
-
-//name of hidden query form for the 3 search engines
-const queryfieldname = ["q","p","q"]; 
+    <script>
+      //set domain to search
+      const domainRoot="https://www.lib.montana.edu/";
       
-function switchaction({form}, index) {
-  form.action=searchaction[index]
-  document.getElementById("hiddenquery").name=queryfieldname[index]
-}
-
-function siteSearch({qfront}) {
-  //loop through radio to see which search engine is checked
-  for (i=0; i< document.domainSearch.se.length; i++){ 
-    if (document.domainSearch.se[i].checked==true)
-      switchaction(document.domainSearch.se[i], i)
-  }
-  document.getElementById("hiddenquery").value=`site:${domainroot} ${qfront.value}`
-}
-</script>
+      //form action for the 3 search engines
+      const searchAction = [ 
+        "https://www.google.com/search",
+        "https://search.yahoo.com/search",
+        "https://search.msn.com/results.aspx"
+      ];
+      
+      //name of hidden query form for the 3 search engines
+      const queryFieldName = ["q","p","q"]; 
+            
+      function switchAction({form}, index) {
+        form.action = searchAction[index]
+        document.getElementById("hiddenQuery").name=queryFieldName[index]
+      }
+      
+      function siteSearch({query}) {
+        //loop through radio to see which search engine is checked
+        for (i=0; i< document.domainSearch.se.length; i++) { 
+          if (document.domainSearch.se[i].checked==true)
+            switchAction(document.domainSearch.se[i], i)
+        }
+        document.getElementById("hiddenQuery").value=`site:${domainRoot} ${query.value}`
+      }
+    </script>
   </body>
 </html>
