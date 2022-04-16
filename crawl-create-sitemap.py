@@ -67,12 +67,12 @@ def crawler(url, headers):
           print('Writing out xml and csv files.')          
           
           try:
-            tree.write('./data/sitemap-'+domain+'.xml', encoding='utf-8', xml_declaration=True)
+            tree.write('./outputs/sitemap-'+domain+'.xml', encoding='utf-8', xml_declaration=True)
           except:
             continue          
 
           try: 
-            with open('./data/sitemap-'+domain+'.csv', 'a') as file:
+            with open('./outputs/sitemap-'+domain+'.csv', 'a') as file:
               #file.write(f'{soup.title.text}; {link.text}; {link["href"]}\n')
               file.write(f'{link.text}, {link["href"]}\n')
               crawler(new_link)
